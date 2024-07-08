@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int minSteps(int x, int y) {
+    int distance = y - x;
+    if (distance == 0) return 0;
+
+    int steps = 0;
+    int current_distance = 0;
+    int step_size = 1;
+
+    while (current_distance < distance) {
+        steps++;
+        current_distance += step_size;
+        if (steps % 2 == 0) {
+            step_size++;
+        }
+    }
+
+    return steps;
+}
+
+int main() {
+    int x, y;
+    printf("Введіть значення x і y: ");
+    scanf("%d %d", &x, &y);
+
+    if (x <= y && x >= 0 && y < 2147483648) {
+        int result = minSteps(x, y);
+        printf("Мінімальна кількість кроків від %d до %d: %d\n", x, y, result);
+    } else {
+        printf("Введені значення повинні задовольняти умовам 0 <= x <= y < 2^31.\n");
+    }
+
+    return 0;
+}
